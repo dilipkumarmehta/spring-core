@@ -1,0 +1,36 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+	<context:component-scan
+		base-package="com.ups.mvc.sprin_mvc" />
+	<bean id="shapeM" class="com.ups.mvc.sprin_mvc.ShapeMaker">
+		<property name="circle" ref="cir" />
+		<property name="rectangle" ref="rect" />
+		<property name="square" ref="sqr" />
+	</bean>
+	<bean id="rect" class="com.ups.mvc.sprin_mvc.Rectangle" />
+	<bean id="sqr" class="com.ups.mvc.sprin_mvc.Square" />
+	<bean id="cir" class="com.ups.mvc.sprin_mvc.Circle" />
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>abc</value>
+			</list>
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations"
+			value="classpath:abc.properties" />
+	</bean>
+	<bean id="id" class="com.ups.mvc.sprin_mvc.AppInitialization"
+		init-method="init" />
+</beans>
